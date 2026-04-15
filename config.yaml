@@ -1,0 +1,60 @@
+# ============================================================
+# Marketing to Commuters — Configuration
+# ============================================================
+# Edit this file to customize the analysis for your business.
+# See README.md for detailed instructions.
+# ============================================================
+
+# --- LODES Dataset Settings ---
+# The LODES dataset is free public data from the U.S. Census Bureau.
+# It shows where people live and where they work (at the census block level).
+# Download link: https://lehd.ces.census.gov/data/lodes/
+lodes:
+  # US state abbreviation (lowercase), e.g. "va", "dc", "ca", "tx"
+  state: "dc"
+  # Data year (2002–2022 available for most states)
+  year: 2022
+  # Job type: JT00=All Jobs, JT01=Primary Jobs
+  job_type: "JT00"
+  # LODES version: "LODES8" uses 2020 census blocks (recommended)
+  version: "LODES8"
+  base_url: "https://lehd.ces.census.gov/data/lodes"
+
+# --- Your Business Location ---
+# Change these to your business address coordinates.
+# To find coordinates: open Google Maps, right-click your location,
+# and the latitude/longitude will appear at the top of the menu.
+business:
+  name: "My Business"
+  latitude: 38.9072
+  longitude: -77.0369
+  # How close must a commute route pass to count as "passing by"?
+  # 8047 meters = 5 miles (default)
+  # Common values: 1600 (1 mile), 3200 (2 miles), 8047 (5 miles)
+  buffer_meters: 8047
+
+# --- Routing ---
+routing:
+  # "google" (recommended, more accurate) or "osrm" (free, no API key needed)
+  engine: "google"
+
+  # Google Maps API Key (REQUIRED if engine is "google")
+  # Get your key: https://console.cloud.google.com/google/maps-apis
+  # See README.md for step-by-step instructions.
+  google_api_key: "YOUR_GOOGLE_API_KEY_HERE"
+
+  # OSRM settings (only used if engine is "osrm")
+  osrm_url: "http://router.project-osrm.org"
+
+  # How many commuter pairs to analyze per run.
+  # Higher = more complete results but uses more API calls.
+  # Start with 100-200 for testing, increase for production.
+  max_routes: 200
+
+  # Seconds to wait between API calls (avoids rate limiting)
+  request_delay: 1.0
+
+# --- Output ---
+output:
+  directory: "output"
+  html_map: true
