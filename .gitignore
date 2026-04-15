@@ -28,3 +28,4 @@ Thumbs.db
 
 # Secrets — never commit API keys
 .env
+docs/
